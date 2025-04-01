@@ -21,7 +21,7 @@ def atualizar_vaga(novo_status: str):
 
 @app.post("/dados")
 async def receber_dados(dados: SensorData, task: BackgroundTasks):
-    if dados.ocupado == True:
+    if dados.ocupado:
         nova_vaga = "Ocupada"
     else:
         nova_vaga = "Livre"
