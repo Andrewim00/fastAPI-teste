@@ -8,7 +8,7 @@ app = FastAPI()
 template = Jinja2Templates(directory="templates")
 
 class SensorData(BaseModel):
-    distance: float = 9
+    distance: float = 11
 
 
 vaga_status = "Livre"
