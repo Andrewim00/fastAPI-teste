@@ -28,7 +28,7 @@ async def receber_dados(dados: SensorData):
 
 @app.get("/")
 async def read_index(request: Request):
-    return template.TemplateResponse("exibir.html", {"request": request, "vaga_status": vaga_status})
+    return template.TemplateResponse("index.html", {"request": request, "vaga_status": vaga_status})
 
 
 @app.get("/status")
