@@ -6,7 +6,7 @@ app = FastAPI()
 
 
 class SensorData(BaseModel):
-    distance: float
+    distance: float = 9
 
 
 vaga_status = "Livre"
