@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI
 from pydantic import BaseModel
 from starlette.responses import FileResponse 
 
@@ -23,9 +23,11 @@ async def receber_dados(dados: SensorData):
     
     return {"status": vaga_status}
 
+
 @app.get("/")
 async def read_index():
-    return FileResponse('index.html')
+    return FileResponse('viewers/index.html')
+
 
 @app.get("/status")
 async def status_vaga():
