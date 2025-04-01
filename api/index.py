@@ -9,7 +9,7 @@ template = Jinja2Templates(directory="templates")
 
 class SensorData(BaseModel):
     id: int
-    ocupado: bool = False
+    ocupado: bool = True
 
 
 vaga_status = "Livre"
