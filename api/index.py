@@ -8,7 +8,8 @@ app = FastAPI()
 template = Jinja2Templates(directory="templates")
 
 class SensorData(BaseModel):
-    distance: float = 11
+    id: int
+    ocupado: bool = True
 
 
 vaga_status = "Livre"
@@ -18,7 +19,7 @@ vaga_status = "Livre"
 async def receber_dados(dados: SensorData):
     global vaga_status
 
-    if dados.distance < 10:
+    if dados.ocupado:
         vaga_status = "Ocupada"
     else:
         vaga_status = "Livre"
