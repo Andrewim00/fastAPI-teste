@@ -12,7 +12,7 @@ class SensorData(BaseModel):
 vaga_status = "Livre"
 
 
-@app.post("/")
+@app.post("/dados")
 async def receber_dados(dados: SensorData):
     global vaga_status
 
