@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Request, BackgroundTasks
 from pydantic import BaseModel
-from starlette.responses import FileResponse, HTMLResponse
+from starlette.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 
 app = FastAPI()
@@ -14,19 +14,17 @@ class SensorData(BaseModel):
 
 vaga_status = "Livre"
 
-def atualizar_vaga(novo_status: str):
-    global vaga_status
-    vaga_status = novo_status
-
 
 @app.post("/dados")
 async def receber_dados(dados: SensorData, task: BackgroundTasks):
+    global vaga_status
+
     if dados.ocupado:
         nova_vaga = "Ocupada"
     else:
         nova_vaga = "Livre"
 
-    task.add_task(atualizar_vaga, nova_vaga)
+    vaga_status = nova_vaga
     return {"status": vaga_status}
 
 
