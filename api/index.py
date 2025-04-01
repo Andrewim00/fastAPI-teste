@@ -19,7 +19,7 @@ vaga_status = "Livre"
 async def receber_dados(dados: SensorData):
     global vaga_status
 
-    if dados.ocupado:
+    if dados.ocupado == True:
         vaga_status = "Ocupada"
     else:
         vaga_status = "Livre"
