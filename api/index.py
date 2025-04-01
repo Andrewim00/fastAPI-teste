@@ -5,7 +5,7 @@ from fastapi.templating import Jinja2Templates
 
 app = FastAPI()
 
-template = Jinja2Templates(directory="viewers")
+template = Jinja2Templates(directory="templates")
 
 class SensorData(BaseModel):
     distance: float = 9

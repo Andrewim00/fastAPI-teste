@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>aoba</title>
+    </head>
+
+    <body>
+        <h1>Status da Vaga: <span id="vaga_status">{{ vaga_status }}</span></h1>
+
+        <script>
+            async function atualizarStatus() {
+                let resposta = await fetch('/status');
+                let dados = await resposta.json();
+                document.getElementById("status").innerText = dados.vaga;
+            }
+    
+            setInterval(atualizarStatus, 2000);  // Atualiza a cada 2 segundos
+        </script>
+    </body>
+</html>
