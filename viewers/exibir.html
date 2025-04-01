@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>aoba</title>
+    </head>
+
+    <body>
+        <h1>Status da Vaga: <span id="status">{{ vaga_status }}</span></h1>
+
+        <script>
+            async function atualizarStatus() {
+                let resposta = await fetch('/dados', { method: 'POST', body: JSON.stringify({ distance: Math.random() * 20 }), headers: { 'Content-Type': 'application/json' }});
+                let dados = await resposta.json();
+                document.getElementById("status").innerText = dados.status;
+            }
+            
+            setInterval(atualizarStatus, 2000);
+        </script>
+    </body>
+</html>

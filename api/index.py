@@ -1,9 +1,11 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from pydantic import BaseModel
-from starlette.responses import FileResponse 
+from starlette.responses import FileResponse
+from fastapi.templating import Jinja2Templates
 
 app = FastAPI()
 
+template = Jinja2Templates(directory="viewers")
 
 class SensorData(BaseModel):
     distance: float = 9
@@ -25,8 +27,8 @@ async def receber_dados(dados: SensorData):
 
 
 @app.get("/")
-async def read_index():
-    return FileResponse('viewers/index.html')
+async def read_index(request: Request):
+    return template.TemplateResponse("exibir.html", {"request": request, "vaga_status": vaga_status})
 
 
 @app.get("/status")
