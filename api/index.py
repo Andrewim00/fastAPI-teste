@@ -12,6 +12,9 @@ class SensorData(BaseModel):
     ocupado: bool = True
 
 
+class SensorTeste(BaseModel):
+    dados: dict
+
 vaga_status = "Livre"
 
 
