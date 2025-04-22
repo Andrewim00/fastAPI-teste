@@ -1,6 +1,6 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, status
 from pydantic import BaseModel
-from starlette.responses import HTMLResponse
+from starlette.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 
 app = FastAPI()
@@ -25,7 +25,7 @@ async def receber_dados(dados: SensorData):
         nova_vaga = "Livre"
 
     vaga_status = nova_vaga
-    return {"status": vaga_status}
+    return RedirectResponse(url="/", status_code=status.HTTP_303_SEE_OTHER)
 
 
 @app.get("/", response_class=HTMLResponse)
