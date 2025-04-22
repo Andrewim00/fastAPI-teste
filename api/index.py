@@ -12,13 +12,10 @@ class SensorData(BaseModel):
     ocupado: bool = True
 
 
-class SensorTeste(BaseModel):
-    dados: dict
-
-vaga_status = "Livre"
+vaga_status: str = "Livre"
 
 
-@app.post("/dados")
+@app.put("/dados")
 async def receber_dados(dados: SensorData):
     global vaga_status
 
