@@ -3,7 +3,15 @@ from pydantic import BaseModel
 from starlette.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 
+from fastapi.middleware.cors import CORSMiddleware
+
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],  # Or explicitly ["GET", "POST", "PUT"]
+)
 
 template = Jinja2Templates(directory="templates")
 
