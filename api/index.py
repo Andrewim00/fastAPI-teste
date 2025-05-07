@@ -30,10 +30,7 @@ async def receber_dados(dados: SensorData):
             vaga_status[key] = "Livre"
 
 
-    return template.TemplateResponse(
-        "index.html", 
-        {"vaga_status": vaga_status}
-    )
+    return {"message": "Updated successfully"}
 
 
 @app.get("/", response_class=HTMLResponse)
