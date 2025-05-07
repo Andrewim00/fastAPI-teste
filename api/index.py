@@ -29,7 +29,6 @@ async def receber_dados(dados: SensorData):
         else:
             vaga_status[key] = "Livre"
 
-    # return RedirectResponse(url="/", status_code=status.HTTP_303_SEE_OTHER)
     return {"message": "Updated successfully"}
 
 
