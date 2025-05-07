@@ -3,3 +3,4 @@ uvicorn
 pydantic
 starlette
 jinja2
+arel

@@ -2,8 +2,10 @@ from fastapi import FastAPI, Request
 from pydantic import BaseModel
 from starlette.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
+from arel import HotReload
 
 app = FastAPI()
+app.add_middleware(HotReload)
 
 template = Jinja2Templates(directory="templates")
 
