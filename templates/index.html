@@ -37,5 +37,11 @@
                 <p>Status: {{ status }}</p>
             </div>
         {% endfor %}
+
+        {% if trigger_refresh %}
+            <script>
+                window.location.reload();
+            </script>    
+        {% endif %}
     </body>
 </html>

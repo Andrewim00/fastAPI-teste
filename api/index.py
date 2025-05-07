@@ -20,7 +20,7 @@ vaga_status: dict[int, str] = {
 
 
 @app.put("/dados")
-async def receber_dados(dados: SensorData):
+async def receber_dados(dados: SensorData, request: Request):
     global vaga_status
 
     for key in vaga_status:
@@ -30,7 +30,10 @@ async def receber_dados(dados: SensorData):
             vaga_status[key] = "Livre"
 
 
-    return {"message": "Updated successfully"}
+    return template.TemplateResponse(
+    "index.html",
+    {"request": request, "trigger_refresh": True}  # Pass a flag
+)
 
 
 @app.get("/", response_class=HTMLResponse)
