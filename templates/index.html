@@ -5,13 +5,37 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>aoba</title>
+
+        <style>
+            .card {
+              border: 1px solid #ccc;
+              border-radius: 10px;
+              padding: 20px;
+              margin: 10px;
+              width: 150px;
+              text-align: center;
+              display: inline-block;
+              transition: 0.3s;
+            }
+        
+            .livre {
+              background-color: #d4edda;
+              color: #155724;
+            }
+        
+            .ocupado {
+              background-color: #f8d7da;
+              color: #721c24;
+            }
+          </style>
     </head>
 
     <body>
-        <h1>Status da Vaga: <span id="vaga_status">{{ vaga_status }}</span></h1>
-
-        <script>
-             
-        </script>
+        {% for numero, status in vaga_status.items() %}
+            <div class="card {% if status == 'Livre' %}livre{% else %}ocupado{% endif %}">
+                <h2>Vaga {{ numero }}</h2>
+                <p>Status: {{ status }}</p>
+            </div>
+        {% endfor %}
     </body>
 </html>
