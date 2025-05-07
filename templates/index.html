@@ -52,11 +52,30 @@
             const lista = document.getElementById("lista-vagas");
             lista.innerHTML = "";
         
-            for (const [num, status] of Object.entries(data.vaga)) {
-              const item = document.createElement("li");
-              item.textContent = `Vaga ${num}: ${status}`;
-              lista.appendChild(item);
-            }
+          //   for (const [num, status] of Object.entries(data.vaga)) {
+          //     const item = document.createElement("li");
+          //     item.textContent = `Vaga ${num}: ${status}`;
+          //     lista.appendChild(item);
+          //   }
+          // }
+
+          for (const [numero, status] of Object.entries(data.vaga)) {
+            const cardsDiv = document.createElement("div");
+            cardsDiv.id = "cards";
+
+            const card = document.createElement("div");
+            card.className = "card " + (status === "Livre" ? "livre" : "ocupado");
+
+            const titulo = document.createElement("h2");
+            titulo.textContent = `Vaga ${numero}`;
+
+            const paragrafo = document.createElement("p");
+            paragrafo.textContent = `Status: ${status}`;
+
+            card.appendChild(titulo);
+            card.appendChild(paragrafo);
+            cardsDiv.appendChild(card);
+            lista.appendChild(cardsDiv);
           }
         
           setInterval(atualizarVagas, 3000); // atualiza a cada 3 segundos
