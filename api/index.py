@@ -30,7 +30,7 @@ async def receber_dados(dados: SensorData):
             vaga_status[key] = "Livre"
 
 
-    return {"message": "Updated successfully"}
+    return RedirectResponse(url="/", status_code=status.HTTP_303_SEE_OTHER)
 
 
 @app.get("/", response_class=HTMLResponse)
