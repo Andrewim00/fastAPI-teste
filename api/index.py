@@ -3,6 +3,8 @@ from pydantic import BaseModel
 from starlette.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 
+from fastapi.responses import JSONResponse
+
 app = FastAPI()
 
 template = Jinja2Templates(directory="templates")
@@ -30,7 +32,7 @@ async def receber_dados(dados: SensorData):
             vaga_status[key] = "Livre"
 
 
-    return {"message": "Updated successfully"}
+    return JSONResponse(content={"refresh": True}, status_code=200)
 
 
 @app.get("/", response_class=HTMLResponse)
