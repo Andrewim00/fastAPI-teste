@@ -31,27 +31,11 @@
     </head>
 
     <body>
-        <ul id="lista-vagas">
-
-        </ul>
-
-        <script>
-          async function atualizarVagas() {
-            const response = await fetch("/status");
-            const data = await response.json();
-
-            const lista = document.getElementById("lista-vagas");
-            lista.innerHTML = "";
-
-            for (const [num, status] of Object.entries(data.vaga)) {
-              const item = document.createElement("li");
-              item.textContent = `Vaga ${num}: ${status}`;
-              lista.appendChild(item);
-            }
-          }
-
-          setInterval(atualizarVagas, 3000); // atualiza a cada 3 segundos
-          atualizarVagas(); // chama na primeira vez
-        </script>
+        {% for numero, status in vaga_status.items() %}
+            <div class="card {% if status == 'Livre' %}livre{% else %}ocupado{% endif %}">
+                <h2>Vaga {{ numero }}</h2>
+                <p id="fetchstatus">Status: {{ status }}</p>
+            </div>
+        {% endfor %}
     </body>
 </html>
