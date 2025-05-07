@@ -31,7 +31,10 @@
     </head>
 
     <body>
-        {% for numero, status in vaga_status.items() %}
+      <div id="cartoes">
+
+      </div>
+        <!-- {% for numero, status in vaga_status.items() %}
             <div id="cards">
               <div class="card {% if status == 'Livre' %}livre{% else %}ocupado{% endif %}">
                   <h2>Vaga {{ numero }}</h2>
@@ -42,15 +45,15 @@
 
         <ul id="lista-vagas">
 
-        </ul>
+        </ul> -->
 
         <script>
           async function atualizarVagas() {
             const response = await fetch("/status");
             const data = await response.json();
         
-            const lista = document.getElementById("lista-vagas");
-            lista.innerHTML = "";
+            // const lista = document.getElementById("lista-vagas");
+            // lista.innerHTML = "";
         
           //   for (const [num, status] of Object.entries(data.vaga)) {
           //     const item = document.createElement("li");
@@ -58,6 +61,9 @@
           //     lista.appendChild(item);
           //   }
           // }
+
+          const listaCards = document.getElementById("cartoes");
+          listaCards.innerHTML = "";
 
           for (const [numero, status] of Object.entries(data.vaga)) {
             const cardsDiv = document.createElement("div");
@@ -75,11 +81,12 @@
             card.appendChild(titulo);
             card.appendChild(paragrafo);
             cardsDiv.appendChild(card);
-            lista.appendChild(cardsDiv);
+            listaCards.appendChild(cardsDiv);
           }
-        
+        }
           setInterval(atualizarVagas, 3000); // atualiza a cada 3 segundos
           atualizarVagas(); // chama na primeira vez
+
         </script>
     </body>
 </html>
