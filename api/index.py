@@ -8,10 +8,10 @@ app = FastAPI()
 template = Jinja2Templates(directory="templates")
 
 class SensorData(BaseModel):
-    vagas: dict[str, bool]
+    vagas: dict
 
 
-vaga_status: dict[int, str] = {
+vaga_status: dict = {
     1: "Livre",
     2: "Livre",
     3: "Livre",
@@ -23,11 +23,11 @@ vaga_status: dict[int, str] = {
 async def receber_dados(dados: SensorData):
     global vaga_status
 
-    for i in range(len(vaga_status)):
-        if dados.vagas[i+1]:
-            vaga_status[i + 1] = "Ocupado"
+    for key in vaga_status:
+        if dados.vagas[key]:
+            vaga_status[key] = "Ocupado"
         else:
-            vaga_status[i + 1] = "Livre"
+            vaga_status[key] = "Livre"
 
 
     return RedirectResponse(url="/", status_code=status.HTTP_303_SEE_OTHER)
