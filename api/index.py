@@ -8,7 +8,7 @@ app = FastAPI()
 template = Jinja2Templates(directory="templates")
 
 class SensorData(BaseModel):
-    vagas: dict[int, bool]
+    vagas: dict[str, bool]
 
 
 vaga_status: dict[int, str] = {
