@@ -1,12 +1,10 @@
 from fastapi import FastAPI, Request
 from pydantic import BaseModel
-from starlette.responses import HTMLResponse, RedirectResponse
+from starlette.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 
 app = FastAPI()
-
-# app.mount("/static", StaticFiles(directory="static"), name="static")
 
 template = Jinja2Templates(directory="templates")
 
@@ -34,6 +32,8 @@ async def receber_dados(dados: SensorData):
 
     return {"message": "Updated successfully"}
 
+
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
 @app.get("/", response_class=HTMLResponse)
 async def read_index(request: Request):
