@@ -1,3 +1,29 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+p, h1, h2, h3 {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}
+
+header{
+  display: flex;
+  align-items: center;
+  height: 120px;
+  background-color: gray;
+}
+
+header > h1{
+  margin-left: 24px;
+}
+
+header img{
+  height: 36px;
+}
+
+
+
 .card {
     border: 1px solid #ccc;
     border-radius: 10px;
