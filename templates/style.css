@@ -22,14 +22,23 @@ header img{
   height: 36px;
 }
 
+.dashboard{
+  max-width: 600px;
+  min-width: 320px;
+  margin: auto;
+  padding-top: 24px;
+}
 
+.cartoes{
+  padding-top: 24px
+}
 
 .card {
     border: 1px solid #ccc;
     border-radius: 10px;
     padding: 20px;
     margin: 10px;
-    width: 150px;
+    width: 100%;
     text-align: center;
     display: inline-block;
     transition: 0.3s;
