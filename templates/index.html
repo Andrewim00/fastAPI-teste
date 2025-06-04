@@ -4,71 +4,117 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>aoba</title>
-
+        <title>VagaCerta</title>
         <style>
-            .card {
-              border: 1px solid #ccc;
+          :root{
+            --color-white-primary: white;
+            --color-gray-primary: #afafaf;
+            --color-gray-secundary: #ccc;
+            --color-green-primary: #155724;
+            --color-green-secundary: #d4edda;
+            --color-red-primary: #721c24;
+            --color-red-secundary: #f8d7da;
+          }
+
+          *{
+            margin: 0;
+            padding: 0;
+          }
+
+          p, h1, h2, h3 {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+          }
+
+          header{
+            display: flex;
+            align-items: center;
+            height: 120px;
+            background-color: var(--color-gray-primary);
+          }
+
+          header > h1{
+            margin-left: 24px;
+          }
+
+          header img{
+            height: 36px;
+          }
+
+          .dashboard{
+            max-width: 600px;
+            min-width: 320px;
+            margin: auto;
+            padding-top: 24px;
+          }
+
+          .cartoes{
+            padding-top: 24px
+          }
+
+          .card {
+              border: 1px solid var(--color-gray-secundary);
               border-radius: 10px;
               padding: 20px;
               margin: 10px;
-              width: 150px;
+              width: 100%;
               text-align: center;
               display: inline-block;
               transition: 0.3s;
             }
-        
+
             .livre {
-              background-color: #d4edda;
-              color: #155724;
+              background-color: var(--color-green-secundary);
+              color: var(--color-green-primary);
             }
-        
+
             .ocupado {
-              background-color: #f8d7da;
-              color: #721c24;
+              background-color: var(--color-red-secundary);
+              color: var(--color-red-primary);
             }
-          </style>
+
+        </style>
     </head>
 
     <body>
-        {% for numero, status in vaga_status.items() %}
-            <div class="card {% if status == 'Livre' %}livre{% else %}ocupado{% endif %}">
-                <h2>Vaga {{ numero }}</h2>
-                <p id="fetchstatus">Status: {{ status }}</p>
-            </div>
-        {% endfor %}
-
+      <header>
+        <h1>VagaCerta</h1>
+      </header>
+      <section class="dashboard">
+        <h2>Local: Super Mercado B.A.BA</h2>
+        <div id="cartoes"></div>
+      </section>
+        
       <script>
         async function atualizarVagas() {
-          const response = await fetch("/status");
-          const data = await response.json()
+        const response = await fetch("/status");
+        const data = await response.json()
+          
+        const listaCards = document.getElementById("cartoes");
+        listaCards.innerHTML = "";
 
-          const listaCards = document.getElementById("cartoes");
-          listaCards.innerHTML = "";
+        for (const [numero, status] of Object.entries(data.vaga)) {
+          const cardsDiv = document.createElement("div");
+          cardsDiv.id = "cards";
 
-          for (const [numero, status] of Object.entries(data.vaga)) {
-            const cardsDiv = document.createElement("div");
-            cardsDiv.id = "cards";
+          const card = document.createElement("div");
+          card.className = "card " + (status === "Livre" ? "livre" : "ocupado");
 
-            const card = document.createElement("div");
-            card.className = "card " + (status === "Livre" ? "livre" : "ocupado");
+          const titulo = document.createElement("h2");
+          titulo.textContent = `Vaga ${numero}`;
 
-            const titulo = document.createElement("h2");
-            titulo.textContent = `Vaga ${numero}`;
+          const paragrafo = document.createElement("p");
+          paragrafo.textContent = `Status: ${status}`;
 
-            const paragrafo = document.createElement("p");
-            paragrafo.textContent = `Status: ${status}`;
-
-            card.appendChild(titulo);
-            card.appendChild(paragrafo);
-            cardsDiv.appendChild(card);
-            listaCards.appendChild(cardsDiv);
-          }
+          card.appendChild(titulo);
+          card.appendChild(paragrafo);
+          cardsDiv.appendChild(card);
+          listaCards.appendChild(cardsDiv);
         }
+      }
         
-        setInterval(atualizarVagas, 3000); // atualiza a cada 3 segundos
-        atualizarVagas(); // chama na primeira vez
-
+      setInterval(atualizarVagas, 3000); // atualiza a cada 3 segundos
+      atualizarVagas(); // chama na primeira vez
       </script>
+      
     </body>
 </html>
