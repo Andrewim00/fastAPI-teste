@@ -14,8 +14,6 @@ class SensorData(BaseModel):
 vaga_status: dict[int, str] = {
     1: "Livre",
     2: "Livre",
-    3: "Livre",
-    4: "Livre"
 }
 
 
